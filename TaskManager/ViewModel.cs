@@ -45,7 +45,12 @@ namespace TaskManager
 
             foreach (var id in currentIds) // these do not exist any more
             {
-                Processes.Remove(Processes.First(p => p.Id == id));
+                var process = Processes.First(p => p.Id == id);
+                if (process.KeepAlive)
+                {
+                    Process.Start(process.ProcessName, process.Arguments);
+                }
+                Processes.Remove(process);
             }
         }
 
