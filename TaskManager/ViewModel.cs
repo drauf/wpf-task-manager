@@ -29,7 +29,7 @@ namespace TaskManager
             }
         }
 
-        public ObservableCollection<Process> Processes { get; } = new ObservableCollection<Process>();
+        public ObservableCollection<ProcessListItem> Processes { get; } = new ObservableCollection<ProcessListItem>();
 
         public void UpdateProcesses(object sender, EventArgs e)
         {
@@ -39,7 +39,7 @@ namespace TaskManager
             {
                 if (!currentIds.Remove(p.Id)) // it's a new process id
                 {
-                    Processes.Add(p);
+                    Processes.Add(new ProcessListItem(p));
                 }
             }
 
@@ -52,6 +52,11 @@ namespace TaskManager
         public void ChangePriority(ProcessPriorityClass priority)
         {
             SelectedProcess.PriorityClass = priority;
+        }
+
+        public void KillSelectedProcess()
+        {
+            SelectedProcess.Kill();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

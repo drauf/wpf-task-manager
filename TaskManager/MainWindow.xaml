@@ -60,7 +60,7 @@
                             <ColumnDefinition Width="80"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <CheckBox Grid.Column="0" />
+                        <CheckBox Grid.Column="0" IsChecked="{Binding KeepAlive}" Checked="ToggleButton_OnChecked" Unchecked="ToggleButton_OnUnchecked"/>
                         <TextBlock Text="{Binding Id}" Grid.Column="1"/>
                         <TextBlock Text="{Binding ProcessName}" Grid.Column="2"/>
                     </Grid>
@@ -77,7 +77,7 @@
             </Grid.ColumnDefinitions>
             <ComboBox Name="Priorities" VerticalContentAlignment="Center"/>
             <Button Grid.Column="1" Content="Change priority" FontSize="15" Background="AliceBlue" Click="ChangePriority_OnClick"/>
-            <Button Grid.Column="3" Content="Kill process" FontSize="15" Background="Red" />
+            <Button Grid.Column="3" Content="Kill process" FontSize="15" Background="Red" Click="KillProcess_OnClick"/>
         </Grid>
 
         <Label Grid.Row="3" Content="Selected process info:" FontSize="16" FontWeight="Bold" />
