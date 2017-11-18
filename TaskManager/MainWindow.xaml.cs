@@ -13,15 +13,19 @@ namespace TaskManager
 
         private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var viewModel = (ViewModel) DataContext;
-            var listBox = (ListBox) sender;
-            viewModel.SelectedProcess = (Process) listBox.SelectedItems[0];
+            var listBox = (ListBox)sender;
+
+            if (listBox.SelectedItems.Count > 0)
+            {
+                var viewModel = (ViewModel)DataContext;
+                viewModel.SelectedProcess = (Process)listBox.SelectedItems[0];
+            }
         }
 
         private void RefreshButton_OnClick(object sender, RoutedEventArgs e)
         {
             var viewModel = (ViewModel)DataContext;
-            viewModel.UpdateProcesses(sender, e);
+            viewModel.ResetProcessesList();
         }
     }
 }

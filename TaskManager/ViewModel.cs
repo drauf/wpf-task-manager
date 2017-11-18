@@ -11,6 +11,13 @@ namespace TaskManager
 {
     public class ViewModel : INotifyPropertyChanged
     {
+        public ViewModel()
+        {
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
+            timer.Tick += UpdateProcesses;
+            timer.Start();
+        }
+
         private Process _selectedProcess;
         public Process SelectedProcess
         {
@@ -24,14 +31,7 @@ namespace TaskManager
 
         public ObservableCollection<Process> Processes { get; } = new ObservableCollection<Process>();
 
-        public ViewModel()
-        {
-            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(2) };
-            timer.Tick += UpdateProcesses;
-            timer.Start();
-        }
-
-        public void UpdateProcesses(object sender, EventArgs e)
+        private void UpdateProcesses(object sender, EventArgs e)
         {
             var currentIds = Processes.Select(p => p.Id).ToList();
 
@@ -46,6 +46,15 @@ namespace TaskManager
             foreach (var id in currentIds) // these do not exist any more
             {
                 Processes.Remove(Processes.First(p => p.Id == id));
+            }
+        }
+
+        public void ResetProcessesList()
+        {
+            Processes.Clear();
+            foreach (var process in Process.GetProcesses())
+            {
+                Processes.Add(process);
             }
         }
 
