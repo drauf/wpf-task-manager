@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,6 +11,8 @@ namespace TaskManager
         public MainWindow()
         {
             InitializeComponent();
+            Priorities.ItemsSource = Enum.GetValues(typeof(ProcessPriorityClass)).Cast<ProcessPriorityClass>();
+            Priorities.SelectedIndex = 0;
         }
 
         private void TasksList_SelectionChanged(object sender, SelectionChangedEventArgs e)
