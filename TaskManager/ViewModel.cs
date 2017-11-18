@@ -31,7 +31,7 @@ namespace TaskManager
 
         public ObservableCollection<Process> Processes { get; } = new ObservableCollection<Process>();
 
-        private void UpdateProcesses(object sender, EventArgs e)
+        public void UpdateProcesses(object sender, EventArgs e)
         {
             var currentIds = Processes.Select(p => p.Id).ToList();
 
@@ -46,15 +46,6 @@ namespace TaskManager
             foreach (var id in currentIds) // these do not exist any more
             {
                 Processes.Remove(Processes.First(p => p.Id == id));
-            }
-        }
-
-        public void ResetProcessesList()
-        {
-            Processes.Clear();
-            foreach (var process in Process.GetProcesses())
-            {
-                Processes.Add(process);
             }
         }
 

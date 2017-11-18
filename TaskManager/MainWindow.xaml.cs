@@ -29,7 +29,7 @@ namespace TaskManager
         private void RefreshButton_OnClick(object sender, RoutedEventArgs e)
         {
             var viewModel = (ViewModel)DataContext;
-            viewModel.ResetProcessesList();
+            viewModel.UpdateProcesses(sender, e);
         }
 
         private void ChangePriority_OnClick(object sender, RoutedEventArgs e)
