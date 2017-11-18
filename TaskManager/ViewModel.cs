@@ -1,13 +1,27 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Threading;
+using TaskManager.Annotations;
 
 namespace TaskManager
 {
-    public class ViewModel
+    public class ViewModel : INotifyPropertyChanged
     {
+        private Process _selectedProcess;
+        public Process SelectedProcess
+        {
+            get => _selectedProcess;
+            set
+            {
+                _selectedProcess = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ObservableCollection<Process> Processes { get; } = new ObservableCollection<Process>();
 
         public ViewModel()
@@ -33,6 +47,13 @@ namespace TaskManager
             {
                 Processes.Remove(Processes.First(p => p.Id == id));
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        [NotifyPropertyChangedInvocator]
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

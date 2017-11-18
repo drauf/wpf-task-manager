@@ -5,17 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:taskManager="clr-namespace:TaskManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="525">
+        Title="MainWindow" Height="800" Width="525">
 
     <Window.DataContext>
         <taskManager:ViewModel/>
     </Window.DataContext>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="350"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="220"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Content="Processes list:" FontSize="16" FontWeight="Bold" />
+            <Button Grid.Column="1" Content="Refresh list" FontSize="15" Background="Beige"/>
+        </Grid>
+
         <ListBox ItemsSource="{Binding Processes}"
-                 Height="350"
                  VerticalAlignment="Top"
-                 HorizontalContentAlignment="Stretch">
+                 HorizontalContentAlignment="Stretch"
+                 SelectionChanged="tasksList_SelectionChanged"
+                 Grid.Row="1">
             <ListBox.Template>
                 <ControlTemplate>
                     <DockPanel LastChildFill="True">
@@ -49,5 +67,52 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+
+        <Label Grid.Row="2" Content="Selected process info:" FontSize="16" FontWeight="Bold" />
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Content="Process id:" />
+            <Label Grid.Row="0" Grid.Column="1" Content="{Binding SelectedProcess.Id, Mode=OneWay}" />
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Process name:" />
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding SelectedProcess.ProcessName, Mode=OneWay}" />
+
+            <Label Grid.Row="2" Grid.Column="0" Content="Nonpaged memory size:" />
+            <Label Grid.Row="2" Grid.Column="1" Content="{Binding SelectedProcess.NonpagedSystemMemorySize64, Mode=OneWay}" />
+
+            <Label Grid.Row="3" Grid.Column="0" Content="Paged memory size:" />
+            <Label Grid.Row="3" Grid.Column="1" Content="{Binding SelectedProcess.PagedMemorySize64, Mode=OneWay}" />
+
+            <Label Grid.Row="4" Grid.Column="0" Content="Private memory size:" />
+            <Label Grid.Row="4" Grid.Column="1" Content="{Binding SelectedProcess.PrivateMemorySize64, Mode=OneWay}" />
+
+            <Label Grid.Row="5" Grid.Column="0" Content="Virtual memory size:" />
+            <Label Grid.Row="5" Grid.Column="1" Content="{Binding SelectedProcess.VirtualMemorySize64, Mode=OneWay}" />
+
+            <Label Grid.Row="6" Grid.Column="0" Content="Start time:" />
+            <Label Grid.Row="6" Grid.Column="1" Content="{Binding SelectedProcess.StartTime, Mode=OneWay}" />
+
+            <Label Grid.Row="7" Grid.Column="0" Content="Threads number:" />
+            <Label Grid.Row="7" Grid.Column="1" Content="{Binding SelectedProcess.Threads.Count, Mode=OneWay}" />
+
+            <Label Grid.Row="8" Grid.Column="0" Content="Base priority:" />
+            <Label Grid.Row="8" Grid.Column="1" Content="{Binding SelectedProcess.BasePriority, Mode=OneWay}" />
+        </Grid>
     </Grid>
 </Window>
