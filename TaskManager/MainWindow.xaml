@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:taskManager="clr-namespace:TaskManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="525">
+        Title="Task Manager" Height="700" Width="525">
 
     <Window.DataContext>
         <taskManager:ViewModel/>
@@ -13,17 +13,17 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="350"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="220"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="220"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Content="Processes list:" FontSize="16" FontWeight="Bold" />
             <Button Grid.Column="1" Content="Refresh list" FontSize="15" Background="Beige" Click="RefreshButton_OnClick"/>
@@ -39,9 +39,9 @@
                     <DockPanel LastChildFill="True">
                         <Grid DockPanel.Dock="Top" Height="30">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="25"></ColumnDefinition>
-                                <ColumnDefinition Width="80"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="25"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="1">Process id</Label>
                             <Label Grid.Column="2">Process name</Label>
@@ -56,9 +56,9 @@
                 <DataTemplate>
                     <Grid Margin="0,1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="25"></ColumnDefinition>
-                            <ColumnDefinition Width="80"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <CheckBox Grid.Column="0" />
                         <TextBlock Text="{Binding Id}" Grid.Column="1"/>
@@ -68,23 +68,35 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Label Grid.Row="2" Content="Selected process info:" FontSize="16" FontWeight="Bold" />
-
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="140"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ComboBox/>
+            <Button Grid.Column="1" Content="Change priority" FontSize="15" Background="AliceBlue" />
+            <Button Grid.Column="3" Content="Kill process" FontSize="15" Background="Red" />
+        </Grid>
+
+        <Label Grid.Row="3" Content="Selected process info:" FontSize="16" FontWeight="Bold" />
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" Content="Process id:" />
