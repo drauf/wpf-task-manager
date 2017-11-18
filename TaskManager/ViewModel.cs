@@ -31,7 +31,7 @@ namespace TaskManager
             timer.Start();
         }
 
-        private void UpdateProcesses(object sender, EventArgs e)
+        public void UpdateProcesses(object sender, EventArgs e)
         {
             var currentIds = Processes.Select(p => p.Id).ToList();
 

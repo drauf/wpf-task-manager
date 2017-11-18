@@ -26,13 +26,13 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Content="Processes list:" FontSize="16" FontWeight="Bold" />
-            <Button Grid.Column="1" Content="Refresh list" FontSize="15" Background="Beige"/>
+            <Button Grid.Column="1" Content="Refresh list" FontSize="15" Background="Beige" Click="RefreshButton_OnClick"/>
         </Grid>
 
         <ListBox ItemsSource="{Binding Processes}"
                  VerticalAlignment="Top"
                  HorizontalContentAlignment="Stretch"
-                 SelectionChanged="tasksList_SelectionChanged"
+                 SelectionChanged="TasksList_SelectionChanged"
                  Grid.Row="1">
             <ListBox.Template>
                 <ControlTemplate>
