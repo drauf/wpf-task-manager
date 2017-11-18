@@ -31,5 +31,12 @@ namespace TaskManager
             var viewModel = (ViewModel)DataContext;
             viewModel.ResetProcessesList();
         }
+
+        private void ChangePriority_OnClick(object sender, RoutedEventArgs e)
+        {
+            var priority = (ProcessPriorityClass)Priorities.SelectionBoxItem;
+            var viewModel = (ViewModel)DataContext;
+            viewModel.ChangePriority(priority);
+        }
     }
 }

@@ -58,6 +58,11 @@ namespace TaskManager
             }
         }
 
+        public void ChangePriority(ProcessPriorityClass priority)
+        {
+            SelectedProcess.PriorityClass = priority;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         [NotifyPropertyChangedInvocator]
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)

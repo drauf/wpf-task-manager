@@ -76,7 +76,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <ComboBox Name="Priorities" VerticalContentAlignment="Center"/>
-            <Button Grid.Column="1" Content="Change priority" FontSize="15" Background="AliceBlue" />
+            <Button Grid.Column="1" Content="Change priority" FontSize="15" Background="AliceBlue" Click="ChangePriority_OnClick"/>
             <Button Grid.Column="3" Content="Kill process" FontSize="15" Background="Red" />
         </Grid>
 
